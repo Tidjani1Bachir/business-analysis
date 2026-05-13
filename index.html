@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tidjani Bachir — Business Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #151820;
+    --card: #1b1f2b;
+    --border: #252a38;
+    --accent1: #4f8ef7;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --text: #e8ecf4;
+    --muted: #8892a4;
+    --tag-bg: #1e2535;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 80px;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 72px 40px 60px;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(79,142,247,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 80% 50%, rgba(167,139,250,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    border: 1px solid rgba(79,142,247,0.35);
+    border-radius: 100px;
+    padding: 5px 16px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #e8ecf4 30%, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-meta a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .hero-meta a:hover { color: var(--accent1); }
+  .hero-meta span { opacity: .3; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 40px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 820px;
+    margin: 60px auto 0;
+    padding: 0 24px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .icon-blue  { background: rgba(79,142,247,0.15); }
+  .icon-purple{ background: rgba(167,139,250,0.15); }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: var(--text);
+  }
+  .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── CARDS GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 14px;
+  }
+
+  /* ── FILE CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .card.blue::after  { background: radial-gradient(circle at 0% 50%, rgba(79,142,247,0.06), transparent 60%); }
+  .card.purple::after{ background: radial-gradient(circle at 0% 50%, rgba(167,139,250,0.06), transparent 60%); }
+  .card:hover { border-color: rgba(79,142,247,0.5); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
+  .card.purple:hover { border-color: rgba(167,139,250,0.5); }
+  .card:hover::after { opacity: 1; }
+
+  .file-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+  }
+  .card-body { flex: 1; min-width: 0; }
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 100px;
+    flex-shrink: 0;
+  }
+  .tag-blue   { background: rgba(79,142,247,0.15);  color: var(--accent1); }
+  .tag-purple { background: rgba(167,139,250,0.15); color: var(--accent2); }
+  .tag-green  { background: rgba(52,211,153,0.15);  color: var(--accent3); }
+
+  /* ── NOTE ── */
+  .note {
+    margin-top: 48px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent1);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .note strong { color: var(--text); }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    margin-top: 72px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a { color: var(--accent1); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 48px 20px 40px; }
+    .section { padding: 0 16px; }
+    .grid { grid-template-columns: 1fr; }
+    .hero-meta { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Business Analysis Portfolio</div>
+  <h1>Tidjani Bachir</h1>
+  <p>Research & analysis behind ShopSphere and Product Manager — market positioning, competitor landscape, tech decisions, and deployment strategy.</p>
+  <div class="hero-meta">
+    <a href="https://github.com/Tidjani1Bachir">GitHub</a>
+    <span>·</span>
+    <a href="https://tidjani-bachir.vercel.app/">Portfolio</a>
+    <span>·</span>
+    <a href="https://shops-frontend.vercel.app">ShopSphere Live</a>
+    <span>·</span>
+    <a href="https://product-manager-chi-eosin.vercel.app">Product Manager Live</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SHOPSPHERE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon icon-blue">🛒</div>
+    <div>
+      <div class="section-title">ShopSphere — E-Commerce Platform</div>
+      <div class="section-sub">MERN Stack · Full-Stack · PayPal Integration</div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <a class="card blue" href="competitor_analysis_Ecommerce.xlsx" target="_blank">
+      <div class="file-icon">📊</div>
+      <div class="card-body">
+        <div class="card-title">Competitor Analysis</div>
+        <div class="card-desc">Shopify, WooCommerce, Magento — market share, pricing, strengths & gaps</div>
+      </div>
+      <span class="tag tag-blue">Excel</span>
+    </a>
+
+    <a class="card blue" href="Customer_Problem_Solution_Analysis_Sheet_Ecommerce.xlsx" target="_blank">
+      <div class="file-icon">🎯</div>
+      <div class="card-body">
+        <div class="card-title">Customer Problem & Solution</div>
+        <div class="card-desc">Pain points, target segments, solution fit, and expected adoption metrics</div>
+      </div>
+      <span class="tag tag-blue">Excel</span>
+    </a>
+
+    <a class="card blue" href="Functional_Requirements_Sheet_Ecommerce.xlsx" target="_blank">
+      <div class="file-icon">✅</div>
+      <div class="card-body">
+        <div class="card-title">Functional Requirements</div>
+        <div class="card-desc">Feature list, priority matrix, and acceptance criteria per user role</div>
+      </div>
+      <span class="tag tag-blue">Excel</span>
+    </a>
+
+    <a class="card blue" href="Non_Functional_Requirements_Ecommerce.xlsx" target="_blank">
+      <div class="file-icon">⚙️</div>
+      <div class="card-body">
+        <div class="card-title">Non-Functional Requirements</div>
+        <div class="card-desc">Performance, security, scalability, and reliability benchmarks</div>
+      </div>
+      <span class="tag tag-blue">Excel</span>
+    </a>
+
+    <a class="card blue" href="ShopSphere_Tech_Stack_Ecommerce.xlsx" target="_blank">
+      <div class="file-icon">🔧</div>
+      <div class="card-body">
+        <div class="card-title">Tech Stack Analysis</div>
+        <div class="card-desc">Library choices, trade-offs, and rationale for MERN + RTK Query + PayPal</div>
+      </div>
+      <span class="tag tag-blue">Excel</span>
+    </a>
+
+    <a class="card blue" href="Deployment_Strategy_Ecommerce.xlsx" target="_blank">
+      <div class="file-icon">🚀</div>
+      <div class="card-body">
+        <div class="card-title">Deployment Strategy</div>
+        <div class="card-desc">Vercel + Render + Docker Compose — cost, scaling, and CI/CD plan</div>
+      </div>
+      <span class="tag tag-blue">Excel</span>
+    </a>
+
+  </div>
+</div>
+
+<div class="divider" style="margin-top:52px;"></div>
+
+<!-- PRODUCT MANAGER -->
+<div class="section">
+  <div class="section-header" style="margin-top:0;">
+    <div class="section-icon icon-purple">📦</div>
+    <div>
+      <div class="section-title">Product Manager — Inventory App</div>
+      <div class="section-sub">Tauri · React · libSQL · Offline-First</div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <a class="card purple" href="Competitor_Analysis_Product_Manager.xlsx" target="_blank">
+      <div class="file-icon">📊</div>
+      <div class="card-body">
+        <div class="card-title">Competitor Analysis</div>
+        <div class="card-desc">TradeGecko, Zoho Inventory, inFlow — pricing, features, market share</div>
+      </div>
+      <span class="tag tag-purple">Excel</span>
+    </a>
+
+    <a class="card purple" href="Customer_Problem_Solution_Analysis_Product_Manager.xlsx" target="_blank">
+      <div class="file-icon">🎯</div>
+      <div class="card-body">
+        <div class="card-title">Customer Problem & Solution</div>
+        <div class="card-desc">SMB pain points, offline-first value prop, target: 500–2000 businesses</div>
+      </div>
+      <span class="tag tag-purple">Excel</span>
+    </a>
+
+    <a class="card purple" href="Deployment_Choices_Analysis_Product_Manager.xlsx" target="_blank">
+      <div class="file-icon">🚀</div>
+      <div class="card-body">
+        <div class="card-title">Deployment Choices</div>
+        <div class="card-desc">Render free tier, Vercel edge, GitHub Releases for desktop distribution</div>
+      </div>
+      <span class="tag tag-purple">Excel</span>
+    </a>
+
+    <a class="card purple" href="Features_Analysis_Product_Manager.xlsx" target="_blank">
+      <div class="file-icon">✅</div>
+      <div class="card-body">
+        <div class="card-title">Features Analysis <span style="font-weight:400;color:var(--muted);font-size:11px;">(Functional &amp;&amp; Non-Functional Requirements Sheet)</span></div>
+        <div class="card-desc">10 features prioritized by user role — 3 Critical, 4 High, 3 Medium</div>
+      </div>
+      <span class="tag tag-purple">Excel</span>
+    </a>
+
+    <a class="card purple" href="Tech_Stack_Efficiency_Analysis_Product_Manager.xlsx" target="_blank">
+      <div class="file-icon">🔧</div>
+      <div class="card-body">
+        <div class="card-title">Tech Stack Efficiency</div>
+        <div class="card-desc">Tauri vs Electron, libSQL offline sync, Cloudinary CDN — impact analysis</div>
+      </div>
+      <span class="tag tag-purple">Excel</span>
+    </a>
+
+  </div>
+</div>
+
+<!-- NOTE -->
+<div class="section">
+  <div class="note">
+    <strong>Note for recruiters:</strong> These files are part of the pre-development research and planning phase for each project. They cover market fit, technical trade-offs, and deployment decisions made before writing the first line of code — demonstrating both engineering and product thinking.
+  </div>
+</div>
+
+<footer>
+  <p>Tidjani Bachir · <a href="https://github.com/Tidjani1Bachir">github.com/Tidjani1Bachir</a> · <a href="https://tidjani-bachir.vercel.app/" style="color:var(--accent1);text-decoration:none;">tidjani-bachir.vercel.app</a></p>
+</footer>
+
+</body>
+</html>
