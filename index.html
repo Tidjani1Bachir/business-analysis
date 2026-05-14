@@ -236,6 +236,74 @@
     .grid { grid-template-columns: 1fr; }
     .hero-meta { gap: 16px; }
   }
+  /* ── DIAGRAM CARDS ── */
+  .diagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .diagram-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .diagram-card:hover {
+    border-color: rgba(167,139,250,0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(0,0,0,0.4);
+  }
+  .diagram-preview {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .diagram-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform .3s;
+  }
+  .diagram-card:hover .diagram-preview img { transform: scale(1.04); }
+  .diagram-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,20,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+  .diagram-card:hover .diagram-overlay { opacity: 1; }
+  .open-icon {
+    font-size: 28px;
+    color: white;
+    background: rgba(167,139,250,0.7);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .diagram-info { padding: 14px 16px 16px; flex: 1; }
+  .diagram-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .diagram-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+  @media (max-width: 600px) {
+    .diagram-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -325,6 +393,61 @@
     </a>
 
   </div>
+
+  <!-- ECOMMERCE DIAGRAMS SUBSECTION -->
+  <div style="margin-top:36px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="width:3px;height:28px;background:linear-gradient(180deg,var(--accent1),transparent);border-radius:2px;"></div>
+      <span style="font-size:13px;font-weight:600;color:var(--accent1);letter-spacing:1.5px;text-transform:uppercase;">Technical Diagrams</span>
+    </div>
+
+    <div class="diagram-grid">
+
+      <a class="diagram-card" href="ClassDiagramEcommerce.jpg" target="_blank">
+        <div class="diagram-preview" style="background:#f8f8f8;">
+          <img src="ClassDiagramEcommerce.jpg" alt="Class Diagram"/>
+          <div class="diagram-overlay" style="--overlay-color:rgba(79,142,247,0.7);">
+            <span class="open-icon" style="background:rgba(79,142,247,0.8);">⤢</span>
+          </div>
+        </div>
+        <div class="diagram-info">
+          <div class="diagram-title">Class Diagram</div>
+          <div class="diagram-desc">UML class model — user, product, order, orderItem, review, categories, shippingAddress & paymentResult with full relationships</div>
+          <span class="tag tag-blue" style="margin-top:8px;display:inline-block;">JPG</span>
+        </div>
+      </a>
+
+      <a class="diagram-card" href="UseCaseDiagramEcom.jpg" target="_blank">
+        <div class="diagram-preview" style="background:#f8f8f8;">
+          <img src="UseCaseDiagramEcom.jpg" alt="Use Case Diagram"/>
+          <div class="diagram-overlay">
+            <span class="open-icon" style="background:rgba(79,142,247,0.8);">⤢</span>
+          </div>
+        </div>
+        <div class="diagram-info">
+          <div class="diagram-title">Use Case Diagram</div>
+          <div class="diagram-desc">Guest, Logged-In Client & Admin actors — browse, filter, cart, checkout, manage products, orders & analytics</div>
+          <span class="tag tag-blue" style="margin-top:8px;display:inline-block;">JPG</span>
+        </div>
+      </a>
+
+      <a class="diagram-card" href="diagram-export-5-14-2026-12_10_32-PM.png" target="_blank">
+        <div class="diagram-preview" style="background:#0d1117;">
+          <img src="diagram-export-5-14-2026-12_10_32-PM.png" alt="Key User Journeys Flowchart"/>
+          <div class="diagram-overlay">
+            <span class="open-icon" style="background:rgba(79,142,247,0.8);">⤢</span>
+          </div>
+        </div>
+        <div class="diagram-info">
+          <div class="diagram-title">Key User Journeys Flowchart</div>
+          <div class="diagram-desc">3 flows — Customer Shopping Journey, Admin Management Journey & Cross-Cutting Features (favorites sync, PayPal, auth)</div>
+          <span class="tag tag-blue" style="margin-top:8px;display:inline-block;">PNG</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
 </div>
 
 <div class="divider" style="margin-top:52px;"></div>
@@ -387,12 +510,67 @@
     </a>
 
   </div>
+
+  <!-- DIAGRAMS SUBSECTION -->
+  <div style="margin-top:36px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="width:3px;height:28px;background:linear-gradient(180deg,var(--accent2),transparent);border-radius:2px;"></div>
+      <span style="font-size:13px;font-weight:600;color:var(--accent2);letter-spacing:1.5px;text-transform:uppercase;">Technical Diagrams</span>
+    </div>
+
+    <div class="diagram-grid">
+
+      <a class="diagram-card" href="use-case-diagramme-Product-Manager.png" target="_blank">
+        <div class="diagram-preview" style="background:linear-gradient(135deg,#0d1117 0%,#161b27 100%);">
+          <img src="use-case-diagramme-Product-Manager.png" alt="UML Use Case Diagram"/>
+          <div class="diagram-overlay">
+            <span class="open-icon">⤢</span>
+          </div>
+        </div>
+        <div class="diagram-info">
+          <div class="diagram-title">UML Use Case Diagram</div>
+          <div class="diagram-desc">Business logic — Dashboard, Products, Categories, Recycle Bin, Webhooks & Onboarding actors</div>
+          <span class="tag tag-purple" style="margin-top:8px;display:inline-block;">PNG</span>
+        </div>
+      </a>
+
+      <a class="diagram-card" href="DataBaseDesign-Product-Manager.png" target="_blank">
+        <div class="diagram-preview" style="background:#0a0e16;">
+          <img src="DataBaseDesign-Product-Manager.png" alt="Database Design"/>
+          <div class="diagram-overlay">
+            <span class="open-icon">⤢</span>
+          </div>
+        </div>
+        <div class="diagram-info">
+          <div class="diagram-title">Database Design</div>
+          <div class="diagram-desc">ERD — products, categories & stock_history tables with PK/FK relationships</div>
+          <span class="tag tag-green" style="margin-top:8px;display:inline-block;">PNG</span>
+        </div>
+      </a>
+
+      <a class="diagram-card" href="diagram-FloSHART-Product-Manager.png" target="_blank">
+        <div class="diagram-preview" style="background:#0a0a10;">
+          <img src="diagram-FloSHART-Product-Manager.png" alt="Core Process Flowcharts"/>
+          <div class="diagram-overlay">
+            <span class="open-icon">⤢</span>
+          </div>
+        </div>
+        <div class="diagram-info">
+          <div class="diagram-title">Core Process Flowcharts</div>
+          <div class="diagram-desc">4 flowcharts — Product Create/Update, Product List with Redis Cache, Delete→Recycle Bin, Dashboard Load with fallback</div>
+          <span class="tag tag-green" style="margin-top:8px;display:inline-block;">PNG</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
 </div>
 
 <!-- NOTE -->
 <div class="section">
   <div class="note">
-    <strong>Note for recruiters:</strong> These files are part of the pre-development research and planning phase for each project. They cover market fit, technical trade-offs, and deployment decisions demonstrating both engineering and product thinking.
+    <strong>Note for recruiters:</strong> These files are part of the pre-development research and planning phase for each project. They cover market fit, technical trade-offs, and deployment decisions — demonstrating both engineering and product thinking.
   </div>
 </div>
 
